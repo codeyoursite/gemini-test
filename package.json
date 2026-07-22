@@ -1,0 +1,23 @@
+{
+  "name": "gemini-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeyoursite/gemini-test.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeyoursite/gemini-test/issues"
+  },
+  "homepage": "https://github.com/codeyoursite/gemini-test#readme",
+  "description": "",
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0"
+  }
+}

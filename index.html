@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" id="txt">
+        <input type="submit">
+    </form>
+    <p id="result"></p>
+
+    <!-- <script src="index.js" type="module"></script> -->
+    <script type="module">
+        import { pipeline, TextStreamer } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers";
+
+        // Create a text generation pipeline
+        const generator = await pipeline(
+        "text-generation",
+        "HuggingFaceTB/SmolLM3-3B-Base"
+        );
+        console.log(generator);
+
+
+        // const form = document.getElementById("form")
+        // const txt = document.getElementById("txt")
+        // console.log(txt)
+        // let contents = null
+
+        // form.addEventListener("submit", (e) => {
+        //     console.log("submit")
+        //     e.preventDefault()
+
+            // contents = txt.value
+            // Define the list of messages
+            const messages = [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: "Hello there!" },
+            ];
+            
+            // Create text streamer
+            const streamer = new TextStreamer(generator.tokenizer, {
+            skip_prompt: true
+            });
+            
+            const result = await generator(messages, {
+                max_new_tokens: 512,
+                do_sample: false,
+                streamer
+            });
+
+            console.log(result[0].generated_text)
+
+            // document.getElementById("result").textContent = result[0].generated_text
+        // })
+    </script>
+</body>
+</html>
